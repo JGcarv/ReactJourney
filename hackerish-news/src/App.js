@@ -4,12 +4,10 @@ import './App.css';
 //Define Global Variables
 const DEFAULT_QUERY = 'ethereum';
 // const DEFAULT_PAGE = 0;
-const DEFAULT_HPP = '10';
 const PATH_BASE = 'https://hn.algolia.com/api/v1';
 const PATH_SEARCH = '/search';
 const PARAM_SEARCH = 'query=';
-const PARAM_PAGE = 'page=';
-const PARAM_HPP = 'hitsPerPage=';
+
 
 
 class App extends Component {
@@ -24,6 +22,7 @@ class App extends Component {
       };
 
       //Bind all Class Functions Here
+      this.getFrontPage = this.getFrontPage.bind(this);
       this.fetchSearchTopStories = this.fetchSearchTopStories.bind(this);
       this.onSearchSubmit = this.onSearchSubmit.bind(this);
       this.onSearchChange = this.onSearchChange.bind(this);
@@ -38,12 +37,18 @@ class App extends Component {
       //see if there're more stories. Se sim, amendar. Se não, set results
    }
 
+   getFrontPage(){
+      fetch(`${PATH_BASE}${PATH_SEARCH}?${"tags=front_page"}`)
+      .then(response => response.json())
+      .then(result => this.setSearchTopStories(result))
+   }
+
+
    fetchSearchTopStories(){
       const {searchTerm} = this.state;
 
       //make the api call -> return list of results
-      //fetch(`${PATH_BASE}${PATH_SEARCH}?${PARAM_SEARCH}${searchTerm}&${PARAM_PAGE}${0}&${PARAM_HPP}${DEFAULT_HPP}`)
-      fetch(`${PATH_BASE}${PATH_SEARCH}?${"tags=front_page"}`)
+      fetch(`${PATH_BASE}${PATH_SEARCH}?${PARAM_SEARCH}${searchTerm}`)
       .then(response => response.json())
       .then(result => this.setSearchTopStories(result))
    }
@@ -60,24 +65,25 @@ class App extends Component {
 
    componentDidMount(){
       //Call the API
-      this.fetchSearchTopStories();
+      this.getFrontPage();
    }
 
    render() {
       const {results, searchTerm} = this.state;
       if (!results) { return null; }
       return (
-         <div className="page">
-            <h1 className="title"> HACKERish NEWS</h1>
-            <div className="interactions">
+         <div className="box">
+            <div className="flex-item">
+               <h1 className="title"> HACKERish NEWS</h1>
+            </div>
+            <div className="flex-item">
                <Search onSubmit={this.onSearchSubmit} onChange={this.onSearchChange}>
                   Serch
                </Search>
             </div>
-            <Table list={results.hits}/>
-            <Button>
-               Give me More!
-            </Button>
+            <div className="flex-item">
+               <Table list={results.hits}/>
+            </div>
          </div>
       );
    }
@@ -101,10 +107,10 @@ const Table = ({list}) =>
    </div>
 
 const Item = ({title,author, url, point}) =>
-   <div>
-      <span>{point}</span>
-      <a href={url}>{title}</a>
-      <span>{author}</span>
+   <div className="card">
+      <span className="card-points">{point}</span>
+      <a href={url} className="card-main" >{title}</a>
+      <span className="card-author"> by {author}</span>
    </div>
 
 
