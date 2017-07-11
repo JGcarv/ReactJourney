@@ -7,7 +7,7 @@ import YTSearch from 'youtube-api-search';
 import { Grid, Col, Row, Navbar} from 'react-bootstrap';
 import './App.css';
 
-const API_KEY = "AIzaSyDMwqaiu6pIYRDjZYQ-z9_Cvo69hTrnmls"
+const API_KEY = "SomeAPIKey" //not a valid API KEYs
 
 class App extends Component {
   constructor(props){

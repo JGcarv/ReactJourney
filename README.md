@@ -14,3 +14,14 @@ The main objective of this is to get my hands dirty in structuring a project and
 ## Project 2 - Faketube
 
 Another unsatisfactory clone, this time it's youtube. I just wanted to do that because it's been a while since I don't play with React that I felt that I needed to relearn everything. Which was what I did with this project.
+
+
+## Resources
+
+#### The Road to learn React by Robin Wieruch
+A great book! It was my first contact with react and everything is explained
+carefully
+
+#### Modern React wih Redux - a course by Stephen Grider
+Great project oriented course. That's where I took most of the projects I made.
+Usually I code along with the videos and than try to redo the projects by myself.
