@@ -15,6 +15,11 @@ The main objective of this is to get my hands dirty in structuring a project and
 
 Another unsatisfactory clone, this time it's youtube. I just wanted to do that because it's been a while since I don't play with React that I felt that I needed to relearn everything. Which was what I did with this project.
 
+## Project 3 - MyBooks
+
+A pretty simple app, which basically displays a list of books and its details. That's the first
+project that I used redux, along with action creators and all. It's pretty rudimentary,
+but helped me begin to understand how is everything connect in a React-redux app.
 
 ## Resources
 
